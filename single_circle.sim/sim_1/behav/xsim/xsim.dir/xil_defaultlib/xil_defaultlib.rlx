@@ -1,0 +1,17 @@
+0.6
+2018.1
+Apr  4 2018
+18:43:17
+/home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim/glbl.v,1522801934,verilog,,,,glbl,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sim_1/new/testbanch.v,1541595771,verilog,,,,testbanch,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/alu.v,1541596816,verilog,,/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/ctrl.v,,alu,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/ctrl.v,1541593167,verilog,,/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/dm.v,,ctrl,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/dm.v,1541555992,verilog,,/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/im.v,,dm,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/im.v,1541405951,verilog,,/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/mips.v,,im,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/instruction_head.v,1541404891,verilog,,,,,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/mips.v,1541594698,verilog,,/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/mux.v,,mips,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/mux.v,1541560299,verilog,,/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/npc.v,,mux_2;mux_4_32;mux_4_5,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/npc.v,1541405487,verilog,,/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/pc.v,/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/instruction_head.v,npc,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/pc.v,1541590708,verilog,,/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/regfile.v,,pc,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/regfile.v,1541570006,verilog,,/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/sign_ext.v,,regfile,,,,,,,,
+/home/silvester/vivado_project/single_circle/single_circle.srcs/sources_1/new/sign_ext.v,1541592886,verilog,,/home/silvester/vivado_project/single_circle/single_circle.srcs/sim_1/new/testbanch.v,,sign_ext,,,,,,,,
