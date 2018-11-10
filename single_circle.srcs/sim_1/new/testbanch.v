@@ -16,8 +16,12 @@ module testbanch();
         #40 $display("%h",my_mips.U_RF.gpr[10]); // rst 置0后的第一个上升沿后10ns,此时第一条指令执行完，显示 $10 结果
         #40 $display("%h",my_mips.U_RF.gpr[10]); // 第二条指令执行完毕，显示 $10 和 $11 结果
             $display("%h",my_mips.U_RF.gpr[11]);
-        #40 $display("%h",my_mips.U_RF.gpr[10]); // 第三条指令执行完毕，显示 $10 和 $11 结果
+        #40 $display("%h",my_mips.U_RF.gpr[10]); // 第三条指令执行完毕，显示 $10 $12 $11 结果
             $display("%h",my_mips.U_RF.gpr[11]);
+            $display("%h",my_mips.U_RF.gpr[12]);
+        #40 $display("%h",my_mips.U_RF.gpr[10]); // 第四条指令执行完毕，显示 $10 $12 $11 结果
+            $display("%h",my_mips.U_RF.gpr[11]);
+            $display("%h",my_mips.U_RF.gpr[12]);
         #20 $stop; // 停止
     end
     
