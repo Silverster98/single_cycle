@@ -5,11 +5,11 @@
 
 /*
 add    GPR[rd] <- GPR[rs] + GPR[rt]
-addiu  GPR[rt] <- GPR[rs] + immediate
+addiu  GPR[rt] <- GPR[rs] + sign_extend(immediate)
 beq    (1)target_offset <- sign_extend(offset << 2) (2)if GPR[rs] == GPR[rt] then pc <- pc + target_offset
 j      
-lw     GPR[rt] <- MEM[GPR[rs] + offset]
-sw     MEM[GPR[rs] + offset] <- GPR[rt]
+lw     GPR[rt] <- MEM[GPR[rs] + sign_extend(offset)]
+sw     MEM[GPR[rs] + sign_extend(offset)] <- GPR[rt]
 sub    GPR[rd] <- GPR[rs] - GPR[rt]
 lui    GPR[rt] <- imm << 16
 */
@@ -49,16 +49,24 @@ module ctrl(
     assign j     = (op == 6'b000010) ? 1 : 0;
     
     
-    assign ALUctrl = (add || addiu || lw || sw) ? 3'b001 :
-                     (beq) ? 3'b010:
-                     3'b000;
-                     
+    assign ALUctrl = (add || addiu || lw || sw) ? 3'b001 : // add operate
+                     (beq) ? 3'b010 : // sub operate
+                     3'b000; // alu结果为第二个操作数              
     assign DMWrite = (sw) ? 1'b1 : 1'b0;
-    assign npc_sel = (j) ? 2'b01 : (beq && beqout) ? 2'b11 : 2'b00;
+    assign npc_sel = (j) ? 2'b01 : // 直接跳转
+                     (beq && beqout) ? 2'b11 : // pc+4+imm_16
+                     2'b00; // pc+4
     assign RegWrite = (add || addiu || lw || lui) ? 1'b1 : 1'b0;
-    assign ExtOp = (lui) ? 2'b00 : (lw || sw) ? 2'b10 : 2'b10; //???
-    assign mux4_5sel = (addiu || lui || lw) ? 2'b00 : 2'b01;
-    assign mux2sel = (lw || sw || addiu) ? 1'b1 : 1'b0;
-    assign mux4_32sel = (lui) ? 2'b11 : (add || addiu) ? 2'b00 : (lw) ? 2'b01 : 2'b10;
+    assign ExtOp = (lui) ? 2'b00 : // imm << 16
+                   (addiu || lw || sw) ? 2'b10 : // sign extend
+                   2'b01; // unsign extend
+    assign mux4_5sel = (addiu || lui || lw) ? 2'b00 : // 选择 rt 写入数据
+                       2'b01; // 选择 rd 写入数据
+    assign mux2sel = (lw || sw || addiu) ? 1'b1 : // 选择 alu 第二个操作数为扩展后的立即数
+                     1'b0; // 选择 RS2out 作为第二个操作数
+    assign mux4_32sel = (lui) ? 2'b11 : // 写入寄存器的数据为立即数
+                        (add || addiu) ? 2'b00 : // 写入寄存器的数据为 alu 运算结果
+                        (lw) ? 2'b01 : // 写入寄存器数据为 数据存储器读取数据
+                        2'b10; // 写入 pc+4
     
 endmodule

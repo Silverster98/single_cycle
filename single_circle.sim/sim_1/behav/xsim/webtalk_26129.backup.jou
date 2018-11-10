@@ -2,8 +2,8 @@
 # Webtalk v2018.1 (64-bit)
 # SW Build 2188600 on Wed Apr  4 18:39:19 MDT 2018
 # IP Build 2185939 on Wed Apr  4 20:55:05 MDT 2018
-# Start of session at: Sat Nov 10 21:10:34 2018
-# Process ID: 7839
+# Start of session at: Wed Nov  7 19:42:44 2018
+# Process ID: 26129
 # Current directory: /home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim
 # Command line: wbtcv -mode batch -source /home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim/xsim.dir/testbanch_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: /home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim/webtalk.log

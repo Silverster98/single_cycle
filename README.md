@@ -54,5 +54,43 @@ module testbanch();
     
 endmodule
 ```
+### addiu 指令
+三条测试指令如下
+```
+addiu $10 $0 0x0001          00100100 00001010 00000000 00000001      0x240a0001
+addiu $11 $10 0x0010         00100101 01001011 00000000 00010001      0x254b0010
+addiu $10 $11 0x1111         00100101 01101010 11111111 11111111      0x256affff
+```
+寄存器不需要赋初始值
+testbanch 测试程序
+```
+`timescale 1ns / 1ps
+
+module testbanch();
+    reg clk;
+    reg rst;
+    mips my_mips(clk, rst);
+    
+    initial begin
+        // 载入指令
+        $readmemh("/home/silvester/vivado_project/single_circle/testcode/addcode.txt", my_mips.U_IM.im);
+        // 载入寄存器值, 测试 addiu 不需要初始寄存器
+        // $readmemh("/home/silvester/vivado_project/single_circle/testcode/regfile.txt", my_mips.U_RF.gpr);
+        rst = 1;
+        clk = 0;
+        #30 rst = 0; // rst = 0，复位结束，开始工作
+        #40 $display("%h",my_mips.U_RF.gpr[10]); // rst 置0后的第一个上升沿后10ns,此时第一条指令执行完，显示 $10 结果
+        #40 $display("%h",my_mips.U_RF.gpr[10]); // 第二条指令执行完毕，显示 $10 和 $11 结果
+            $display("%h",my_mips.U_RF.gpr[11]);
+        #40 $display("%h",my_mips.U_RF.gpr[10]); // 第三条指令执行完毕，显示 $10 和 $11 结果
+            $display("%h",my_mips.U_RF.gpr[11]);
+        #20 $stop; // 停止
+    end
+    
+    always
+        #20 clk = ~clk; // 时钟
+    
+endmodule
+```
 
 emmmmmm 再说一个比较丢人的事，单周期是single_cycle,然后我在用vivado新建项目时写成了single_circle。。。然后找了半天，不知道怎么改项目名。。。所以文件夹名都是single_circle。哎，太菜了。
