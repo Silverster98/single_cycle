@@ -8,15 +8,11 @@ module testbanch();
     initial begin
         // 载入指令
         $readmemh("/home/silvester/vivado_project/single_circle/testcode/addcode.txt", my_mips.U_IM.im);
-        // 载入MEM
-        $readmemh("/home/silvester/vivado_project/single_circle/testcode/memfile.txt", my_mips.U_DM.dm);
         rst = 1;
         clk = 0;
         #30 rst = 0; // rst = 0，复位结束，开始工作
         #40 $display("%h",my_mips.U_RF.gpr[10]);
-        #40 $display("%h",my_mips.U_RF.gpr[11]);
-        #40 $display("%h",my_mips.U_RF.gpr[12]);
-        #20 $stop; // 停止
+        #100 $stop; // 停止
     end
     
     always

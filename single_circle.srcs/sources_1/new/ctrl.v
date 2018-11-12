@@ -60,8 +60,8 @@ module ctrl(
     assign ExtOp = (lui) ? 2'b00 : // imm << 16
                    (addiu || lw || sw) ? 2'b10 : // sign extend
                    2'b01; // unsign extend
-    assign mux4_5sel = (addiu || lui || lw) ? 2'b00 : // 选择 rt 写入数据
-                       2'b01; // 选择 rd 写入数据
+    assign mux4_5sel = (addiu || lui || lw) ? 2'b00 : // 选择 rt 作为写入地址
+                       2'b01; // 选择 rd 作为写入地址
     assign mux2sel = (lw || sw || addiu) ? 1'b1 : // 选择扩展后的立即数作为 alu 第二个操作数
                      1'b0; // 选择 RS2out 作为第二个操作数
     assign mux4_32sel = (lui) ? 2'b11 : // 写入寄存器的数据为立即数

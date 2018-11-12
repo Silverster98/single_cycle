@@ -1,6 +1,6 @@
 webtalk_init -webtalk_dir /home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim/xsim.dir/testbanch_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Sun Nov 11 23:12:18 2018" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Mon Nov 12 17:33:24 2018" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2018.1 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "2188600" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "LIN64" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "520c64f8-e2ce-4a46-b612-538ea74c1a74" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "94c1ec39808f44c4812cc05d6318f95b" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "46" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "50" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Ubuntu" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "Ubuntu 16.04.5 LTS" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz" -context "user_environment"
@@ -26,7 +26,7 @@ webtalk_add_data -client xsim -key Command -value "xsim" -context "xsim\\command
 webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\usage"
 webtalk_add_data -client xsim -key runtime -value "170 ns" -context "xsim\\usage"
 webtalk_add_data -client xsim -key iteration -value "0" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Time -value "0.04_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Memory -value "128516_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 1957266490 -regid "" -xml /home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim/xsim.dir/testbanch_behav/webtalk/usage_statistics_ext_xsim.xml -html /home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim/xsim.dir/testbanch_behav/webtalk/usage_statistics_ext_xsim.html -wdm /home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim/xsim.dir/testbanch_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Simulation_Time -value "0.02_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Simulation_Memory -value "128512_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 1141811929 -regid "" -xml /home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim/xsim.dir/testbanch_behav/webtalk/usage_statistics_ext_xsim.xml -html /home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim/xsim.dir/testbanch_behav/webtalk/usage_statistics_ext_xsim.html -wdm /home/silvester/vivado_project/single_circle/single_circle.sim/sim_1/behav/xsim/xsim.dir/testbanch_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

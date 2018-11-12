@@ -184,4 +184,40 @@ endmodule
 
 ```
 
+### sw 指令
+三条测试指令如下
+```
+addiu $10,$0,0x0009   00100100 00001010 00000000 00001001    0x240a0009
+sw $10,4($0)          10101100 00001010 00000000 00000100    0xac0a0004
+sw $0,3($10)          10101101 01000000 00000000 00000011    0xad400003
+```
+说明：第一条就是计算结果9加载到 $10,然后将 $10 的结果加载至数据存储器1号字地址，最后一条就是将 $0 数据存在 (3+9)/4 = 3 号地址
+
+testbench测试程序
+```
+`timescale 1ns / 1ps
+
+module testbanch();
+    reg clk;
+    reg rst;
+    mips my_mips(clk, rst);
+    
+    initial begin
+        // 载入指令
+        $readmemh("/home/silvester/vivado_project/single_circle/testcode/addcode.txt", my_mips.U_IM.im);
+        rst = 1;
+        clk = 0;
+        #30 rst = 0; // rst = 0，复位结束，开始工作
+        #40 $display("%h",my_mips.U_RF.gpr[10]);
+        #100 $stop; // 停止
+    end
+    
+    always
+        #20 clk = ~clk; // 时钟
+    
+endmodule
+
+```
+最后，在窗口处看dm的数据即可。
+
 emmmmmm 再说一个比较丢人的事，单周期是single_cycle,然后我在用vivado新建项目时写成了single_circle。。。然后找了半天，不知道怎么改项目名。。。所以文件夹名都是single_circle。哎，太菜了。
