@@ -12,7 +12,9 @@ module testbanch();
         clk = 0;
         #30 rst = 0; // rst = 0，复位结束，开始工作
         #40 $display("%h",my_mips.U_RF.gpr[10]);
-        #100 $stop; // 停止
+        #40 $display("%h",my_mips.U_RF.gpr[11]);
+        #40 $display("%h",my_mips.U_RF.gpr[12]);
+        #20 $stop; // 停止
     end
     
     always
