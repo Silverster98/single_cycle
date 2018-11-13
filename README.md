@@ -220,4 +220,39 @@ endmodule
 ```
 最后，在窗口处看dm的数据即可。
 
+### lui 指令
+测试的三条指令
+```
+lui $10,1          00111100 00001010 00000000 00000001    0x3c0a0001
+lui $11,5          00111100 00001011 00000000 00000101    0x3c0b0005
+add $12,$11,$10    00000001 01101010 01100000 00100000    0x016a6020
+```
+testbench 测试程序
+```
+`timescale 1ns / 1ps
+
+module testbanch();
+    reg clk;
+    reg rst;
+    mips my_mips(clk, rst);
+    
+    initial begin
+        // 载入指令
+        $readmemh("/home/silvester/vivado_project/single_circle/testcode/addcode.txt", my_mips.U_IM.im);
+        rst = 1;
+        clk = 0;
+        #30 rst = 0; // rst = 0，复位结束，开始工作
+        #40 $display("%h",my_mips.U_RF.gpr[10]);
+        #40 $display("%h",my_mips.U_RF.gpr[11]);
+        #40 $display("%h",my_mips.U_RF.gpr[12]);
+        #20 $stop; // 停止
+    end
+    
+    always
+        #20 clk = ~clk; // 时钟
+    
+endmodule
+
+```
+
 emmmmmm 再说一个比较丢人的事，单周期是single_cycle,然后我在用vivado新建项目时写成了single_circle。。。然后找了半天，不知道怎么改项目名。。。所以文件夹名都是single_circle。哎，太菜了。
