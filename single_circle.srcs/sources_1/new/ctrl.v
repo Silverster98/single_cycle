@@ -7,7 +7,7 @@
 add    GPR[rd] <- GPR[rs] + GPR[rt]
 addiu  GPR[rt] <- GPR[rs] + sign_extend(immediate)
 beq    (1)target_offset <- sign_extend(offset << 2) (2)if GPR[rs] == GPR[rt] then pc <- pc + target_offset
-j      
+j      pc <- {pc[31,28], imm, 00}
 lw     GPR[rt] <- MEM[GPR[rs] + sign_extend(offset)]
 sw     MEM[GPR[rs] + sign_extend(offset)] <- GPR[rt]
 sub    GPR[rd] <- GPR[rs] - GPR[rt]

@@ -255,4 +255,42 @@ endmodule
 
 ```
 
+### j 指令
+测试的几条指令如下
+```
+j 0x4              00001000 00000000 00000000 00000101   0x08000004
+addiu $10,$0,1     00101000 00001010 00000000 00000001   0x240a0001
+addiu $10,$0,2     00101000 00001010 00000000 00000010   0x240a0002
+addiu $10,$0,3     00101000 00001010 00000000 00000011   0x240a0003
+addiu $10,$0,4     00101000 00001010 00000000 00000100   0x240a0004
+addiu $11,$10,5    00101001 01001011 00000000 00000101   0x254b0005
+```
+说明：第一条指令即跳转，跳转至 addiu $10,$0,4 ，之后顺序执行
+testbench测试程序
+```
+`timescale 1ns / 1ps
+
+module testbanch();
+    reg clk;
+    reg rst;
+    mips my_mips(clk, rst);
+    
+    initial begin
+        // 载入指令
+        $readmemh("/home/silvester/vivado_project/single_circle/testcode/addcode.txt", my_mips.U_IM.im);
+        rst = 1;
+        clk = 0;
+        #30 rst = 0; // rst = 0，复位结束，开始工作
+        #100 $display("%h",my_mips.U_RF.gpr[10]);
+        #20 $display("%h",my_mips.U_RF.gpr[11]);
+        $stop; // 停止
+    end
+    
+    always
+        #20 clk = ~clk; // 时钟
+    
+endmodule
+
+```
+
 emmmmmm 再说一个比较丢人的事，单周期是single_cycle,然后我在用vivado新建项目时写成了single_circle。。。然后找了半天，不知道怎么改项目名。。。所以文件夹名都是single_circle。哎，太菜了。
