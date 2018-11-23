@@ -1,5 +1,5 @@
 # MIPS 32 单周期 部分指令实现
-说明：每次提交的 commit 都是在验证一个指令正确之后提交的 commit，对于每个指令，使用的验证程序不同。
+说明：每次提交的 commit 都是在验证一个指令正确之后提交的 commit，对于每个指令，使用的验证程序不同。同时，测试指令的写法也并不是严格按照MIPS汇编来写的，仅仅根据每条指令的格式来写出他的16进制数，然后运行。
 
 - single_circle.srcs 文件夹包含 源文件和仿真文件
 - testcode 文件夹包含各个指令的测试二进制代码和寄存器初始值
@@ -283,6 +283,44 @@ module testbanch();
         #30 rst = 0; // rst = 0，复位结束，开始工作
         #100 $display("%h",my_mips.U_RF.gpr[10]);
         #20 $display("%h",my_mips.U_RF.gpr[11]);
+        $stop; // 停止
+    end
+    
+    always
+        #20 clk = ~clk; // 时钟
+    
+endmodule
+
+```
+
+# beq 指令
+测试指令
+```
+addiu $10,$0,5    00101000 00001010 00000000 00000101   0x240a0005
+addiu $11,$0,5    00101000 00001011 00000000 00000101   0x240b0005
+beq $10,$11,1     00010001 01001011 00000000 00000001   0x114b0001
+add $12,$10,$11   00000001 01001011 01100000 00100000   0x014b6020
+sub $12,$10,$11   00000001 01001011 01100000 00100010   0x014b6022
+```
+说明，在第三条指令下， ($10)和($11)的值相等，则跳转至最后一条指令，最后($12)=0
+
+testbench测试程序
+```
+`timescale 1ns / 1ps
+
+module testbanch();
+    reg clk;
+    reg rst;
+    mips my_mips(clk, rst);
+    
+    initial begin
+        // 载入指令
+        $readmemh("/home/silvester/vivado_project/single_circle/testcode/addcode.txt", my_mips.U_IM.im);
+        rst = 1;
+        clk = 0;
+        #30 rst = 0; // rst = 0，复位结束，开始工作
+        #120
+        #40 $display("%h",my_mips.U_RF.gpr[12]);
         $stop; // 停止
     end
     
